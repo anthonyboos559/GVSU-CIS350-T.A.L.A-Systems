@@ -4,23 +4,23 @@ Hold a team meeting at least once a week in some format.  Copy the following tem
 
 ## Meeting minutes template
 
-Team name:
+Team name: T.A.L.A Systems
 
-Members present:
+Members present: 
 
-Date:
+Date: 
 
-Time:
+Time: 
 
 Discussion points: 
 
-*
-*
-*
+* 
+* 
+* 
 
 Goals for next week (include responsibilities)
 
-*
-*
-*
+* 
+* 
+* 
 
