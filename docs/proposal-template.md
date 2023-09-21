@@ -8,7 +8,7 @@ Team members:
 
 # Anticipated Technologies
 
-(What technologies are needed to build this project)
+We will be using Python 3.11 to build this project as well as Tkinter since it's a built in library that comes in Python. Another technology we will use would be SQL and the library SQLite that comes built into Python as this will allow us to make a RDBMS stored on our own laptops but by still using SQL commands. 
 
 # Method/Approach
 
