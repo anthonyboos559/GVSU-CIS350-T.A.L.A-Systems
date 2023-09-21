@@ -5,7 +5,7 @@ Project description (~1 paragraph)
 ## Team Members and Roles
 
 * Alec Mirambeau (RDBMS)
-* Anthony Boos (GUI/Backend)
+* ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos/tree/main) (GUI/Backend)
 * Lydia Castilhos (DBM)
 * Asa Rowntree (GUI/DB)
 
