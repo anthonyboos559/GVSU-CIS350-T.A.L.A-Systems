@@ -6,7 +6,7 @@ Project description (~1 paragraph)
 
 * Alec Mirambeau (RDBMS)
 * Anthony Boos (GUI/Backend)
-* Member 3 (Role 5, Role 6)
+* Lydia Castilhos (DBM)
 
 ## Prerequisites
 Having python 3.11 installed.
