@@ -13,7 +13,7 @@ information. The GUI controls will construct SQL queries to perform the operatio
 * Asa Rowntree (GUI/DB)
 
 ## Prerequisites
-Having python 3.11 installed. -SQLLite and TKinter are built-in to Python.
+Having python 3.11 installed. -sqllite3 and tkinter are built-in to Python.
 
 ## Run Instructions
 
