@@ -7,8 +7,8 @@ information. The GUI controls will construct SQL queries to perform the operatio
 
 ## Team Members and Roles
 
-* Alec Mirambeau (GUI/DB)
-* ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos/) (GUI/Backend)
+* ![Alec Mirambeau](https://github.com/alec202/CIS350-HW2-Mirambeau) (GUI/DB)
+* ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos) (GUI/Backend)
 * ![Lydia Castilhos](https://github.com/lydecast/CIS350-HW2-Castilhos) (DBM) 
 * Asa Rowntree (GUI/DB)
 
