@@ -8,12 +8,12 @@ information. The GUI controls will construct SQL queries to perform the operatio
 ## Team Members and Roles
 
 * Alec Mirambeau (GUI/DB)
-* ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos/tree/main) (GUI/Backend)
+* ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos/) (GUI/Backend)
 * ![Lydia Castilhos](https://github.com/lydecast/CIS350-HW2-Castilhos) (DBM) 
 * Asa Rowntree (GUI/DB)
 
 ## Prerequisites
-Having python 3.11 installed. -sqllite3 and tkinter are built-in to Python.
+Having python 3.11 installed. (sqllite3 and tkinter are built-in to Python)
 
 ## Run Instructions
 
