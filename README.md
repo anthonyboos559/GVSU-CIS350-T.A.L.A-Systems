@@ -10,7 +10,7 @@ information. The GUI controls will construct SQL queries to perform the operatio
 * ![Alec Mirambeau](https://github.com/alec202/CIS350-HW2-Mirambeau) (GUI/DB)
 * ![Anthony Boos](https://github.com/anthonyboos559/CIS350-HW2-Boos) (GUI/Backend)
 * ![Lydia Castilhos](https://github.com/lydecast/CIS350-HW2-Castilhos) (DBM) 
-* Asa Rowntree (GUI/DB)
+* ![Asa Rowntree](https://github.com/AsaRowntree/CIS350-HW2_Rowntree) (GUI/DB)
 
 ## Prerequisites
 Having python 3.11 installed. (sqllite3 and tkinter are built-in to Python)
