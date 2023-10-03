@@ -7,6 +7,10 @@ class GUI(ABC):
 
     def _clear_gui(self):
 
+    def pass_to_sql(self, action = None, entry = None):
+
+
+
 
 
 
