@@ -1,16 +1,28 @@
 import tkinter as tk
-from abc import ABC
 
-class GUI(ABC):
+class GUI:
     """Displays the GUI that will utilize the backend Logic"""
     def __init__(self):
+        pass
 
-    def _clear_gui(self):
+    def clear_gui(self) -> None:
+        pass
 
-    def pass_to_sql(self, action = None, entry = None):
+    def pass_to_database(self, list: query) -> None:
+        #Send components of the SQL query the Databse object
+        pass
 
+    def display_buttons(self) -> None:
+        pass
 
+    def get_results(self):
+        pass
 
+    def print_table(self):
+        pass
+
+    def get_input(self):
+        pass
 
 
 
