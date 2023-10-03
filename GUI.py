@@ -1,11 +1,15 @@
 import tkinter as tk
+from abc import ABC
 
-class GUI:
+class GUI(ABC):
     """Displays the GUI that will utilize the backend Logic"""
-    root = tk.Tk()
-    root.title("Inventory Management - T.A.L.A")
+    def __init__(self):
 
-    root.mainloop()
+    def _clear_gui(self):
+
+
+
+
 
 
 
