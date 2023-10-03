@@ -21,6 +21,11 @@ class Database:
     def format_sql_command(self, query: str):
         pass
 
+    # use command line format to execute the different sql commands.
+    # So a dictionary with pointers to the methods will be needed.
+    def execute_command(self):
+        pass
+
 
 
 
