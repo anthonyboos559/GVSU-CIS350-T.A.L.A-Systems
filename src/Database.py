@@ -26,6 +26,18 @@ class Database:
     def execute_command(self):
         pass
 
+    def create_table(self, str: str):
+        """
+        Creates the items database table
 
+        Params:
+            str: A string that represents what table we would like to make. This argument
+                should only ever be employee or items
+        """
+        pass
+
+    def create_tables(self):
+        """Create both tables employees and items tables."""
+        pass
 
 
