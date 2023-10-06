@@ -40,4 +40,10 @@ class Database:
         """Create both tables employees and items tables."""
         pass
 
+    def create_original_tables(self):
+        """Create the original employee and items table which will be used in the innit method.
+         """
+        pass
+    # should we store the original data in a file, or within the code?
+
 
