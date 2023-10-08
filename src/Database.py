@@ -46,4 +46,8 @@ class Database:
         pass
     # should we store the original data in a file, or within the code?
 
+    def ensure_changes_are_safe(self):
+        """Ensures that the SQL command to be executed is safe and doesn't contain things like dropping tables"""
+        pass
+
 
