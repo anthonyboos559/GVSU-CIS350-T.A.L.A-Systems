@@ -50,6 +50,7 @@ class Database:
 
     def ensure_changes_are_safe(self):
         """Ensures that the SQL command to be executed is safe and doesn't contain things like dropping tables"""
+        invalid_values = ["'", '"', ';', 'employee_database_tables', 'inventory_database_tables']
         pass
 
 
