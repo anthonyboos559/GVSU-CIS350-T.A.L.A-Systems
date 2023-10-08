@@ -1,8 +1,10 @@
-import sqlite3 as sq
+import sqlite3 as sql
 class Database:
 
     def __init__(self):
         self.query = None
+        employee_database_tables = None
+        inventory_database_tables = None
 
     def edit_row(self):
         pass
