@@ -28,9 +28,9 @@ attributes should behave.
 # Non-Functional Requirements
 1. GUI
  1. NFRG1: The GUI windows shall remain a fixed size.
- 2. NFRG2: Buttons on the GUI shall be easily readable. GUI shall be easily readable.
+ 2. NFRG2: Buttons on the GUI shall be easily identifiable.
  3. NFRG3: The user shall only access the database through the provided GUI.
- 4. NFRG4: The GUI shall be easily understanable.
+ 4. NFRG4: The GUI text shall be clearly readable.
  5. NFRG5: The GUI shall be intuitive to use.
  6. NFRG6: The GUI shall not have unreasonable delays.
  7. NFRG7: The user shall be aware of what the program does.
