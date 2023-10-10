@@ -25,3 +25,40 @@ FR3: The user's input shall be validated before being processed.
 NF1: The GUI windows shall remain a fixed size.
 NF2: The user shall only access the database through the provided GUI.
 NF3: The system shall not allow for SQL injection.
+
+
+Lydia:
+FRD4
+FRD5
+FRD6
+
+NFRD1
+NFRD2
+NFRG8
+
+Alec:
+FRD1
+FRD2
+FRD3
+
+NFRG2
+NFRG4
+NFRG5
+
+Tony:
+FRG1
+FRG2
+FRG3
+
+NFRD3
+NFRG1
+NFRG3
+
+Asa:
+FRG4
+FRD7
+FRD8
+
+NFRD4
+NFRG6
+NFRG7
