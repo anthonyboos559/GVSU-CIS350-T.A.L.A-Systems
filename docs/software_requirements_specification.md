@@ -9,13 +9,13 @@ attributes should behave.
 
 
 # Functional Requirements
-1. GUI
+### GUI Reqs
  1. FRG1: The GUI shall allow the user to submit a request to the database.
  2. FRG2: The GUI shall allow the user to view the results of their requests.
  3. FRG3: The GUI shall display a staus message based on the result of the request.
  4. FRG4: The GUI shall allow the user to save their changes.
  
-2. Database
+### Database Reqs
  1. FRD1: Database shall construct SQL queries.
  2. FRD2: Database shall not directly use GUI arguments to execute SQL commands
  3. FRD3: Database shall create 3 tables and initialize them with the correct data upon    	instantiation of a Database object.
@@ -26,7 +26,7 @@ attributes should behave.
  8. FRD8: The database shall write its data to a file.
  
 # Non-Functional Requirements
-1. GUI
+### GUI Reqs
  1. NFRG1: The GUI windows shall remain a fixed size.
  2. NFRG2: Buttons on the GUI shall be easily identifiable.
  3. NFRG3: The user shall only access the database through the provided GUI.
@@ -35,7 +35,7 @@ attributes should behave.
  6. NFRG6: The GUI shall not have unreasonable delays.
  7. NFRG7: The user shall be aware of what the program does.
  8. NFRG8: The GUI shall be compatible with Windows, MacOS, and Linux.
-2. Database
+### Database Reqs
  1. NFRD1: User shall not be able to drop tables.
  2. NFRD2: User shall not be able to modify columns.
  3. NFRD3: The user's query shall be validated before being processed.
