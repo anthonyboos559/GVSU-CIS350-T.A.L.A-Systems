@@ -3,7 +3,7 @@
 Creating a database structure to model the inventory operation and management of a grocery store. Further databases
 may be added to include employee and customer information. A Python GUI will be the main interface used to interact
 with the program. The GUI will allow the user to select the information that they want and allow them to edit the
-information. The GUI controls will construct SQL queries to perform the operations.
+information. The GUI controls will be used to construct SQL queries to perform the operations.
 
 ## Team Members and Roles
 
