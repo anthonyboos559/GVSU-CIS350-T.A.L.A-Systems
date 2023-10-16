@@ -11,6 +11,9 @@ class Database:
     def edit_row(self):
         pass
 
+    def edit_column(self):
+        pass
+
     def add_row(self):
         pass
 
@@ -54,5 +57,6 @@ class Database:
         """Ensures that the SQL command to be executed is safe and doesn't contain things like dropping tables"""
         invalid_values = ["'", '"', ';', 'employee_database_tables', 'inventory_database_tables']
         pass
+
 
 
