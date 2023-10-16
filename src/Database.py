@@ -9,12 +9,17 @@ class Database:
 
 
     def edit_row(self):
+
+
         pass
 
     def edit_column(self):
         pass
 
     def add_row(self):
+        "INSERT INTO Inventory VALUES(id, product_name, count, price);"
+        "INSERT INTO Employee VALUES(emp_id, name, position, email, phone_num, salary);"
+        "INSERT INTO Member VALUES(member_id, name, email, phone_num, points);"
         pass
 
     def delete_row(self):
@@ -34,6 +39,10 @@ class Database:
         pass
 
     def create_table(self, str: str):
+        "CREATE TABLE Inventory(ID INT, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
+        "CREATE TABLE Employee(emp_id INT, Name VARCHAR(30), Position VARCHAR(5), Email VARCHAR(40) Phone_num VARCHAR(22) Salary NUMERIC(6, 2));"
+        "CREATE TABLE Member(member_id INT, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
+
         """
         Creates the items database table
 
