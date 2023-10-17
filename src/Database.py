@@ -42,7 +42,7 @@ class Database:
         pass
 
     def create_table(self, str: str):
-        "CREATE TABLE Inventory(ID INT PRIMARY KEY, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
+        "CREATE TABLE Inventory(item_id INT PRIMARY KEY, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
         "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30), Position VARCHAR(5), Email VARCHAR(40) Phone_num VARCHAR(22) Salary NUMERIC(6, 2));"
         "CREATE TABLE Member(member_id INT PRIMARY KEY, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
 
