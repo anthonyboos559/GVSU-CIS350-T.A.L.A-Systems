@@ -8,26 +8,29 @@ class Database:
         # This is a test
 
 
-    def edit_row(self):
-
-
+    def edit_row(self, items: list):
         pass
 
-    def edit_column(self):
-        pass
-
-    def add_row(self):
+    def add_row(self, items: list):
         "INSERT INTO Inventory VALUES(id, product_name, count, price);"
         "INSERT INTO Employee VALUES(emp_id, name, position, email, phone_num, salary);"
         "INSERT INTO Member VALUES(member_id, name, email, phone_num, points);"
         pass
 
-    def delete_row(self):
+    def delete_row(self, items: list):
         pass
 
     # receive inputs from GUI and store the passed information in the instance variables and format the correct
     # SQL command
-    def pass_to_database(self, query: str,):
+    def pass_to_database(self, action: list[str, str, str]):
+        commands = {"delete": self.delete_row,
+                   "edit": self.edit_row,
+                   "add": self.add_row}
+        command = action[0]
+        commands[command](action[1:])
+
+
+
         pass
 
     def format_sql_command(self, query: str):
@@ -39,16 +42,16 @@ class Database:
         pass
 
     def create_table(self, str: str):
-        "CREATE TABLE Inventory(ID INT, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
-        "CREATE TABLE Employee(emp_id INT, Name VARCHAR(30), Position VARCHAR(5), Email VARCHAR(40) Phone_num VARCHAR(22) Salary NUMERIC(6, 2));"
-        "CREATE TABLE Member(member_id INT, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
+        "CREATE TABLE Inventory(ID INT PRIMARY KEY, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
+        "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30), Position VARCHAR(5), Email VARCHAR(40) Phone_num VARCHAR(22) Salary NUMERIC(6, 2));"
+        "CREATE TABLE Member(member_id INT PRIMARY KEY, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
 
         """
         Creates the items database table
 
         Params:
             str: A string that represents what table we would like to make. This argument
-                should only ever be employee or items
+                should only ever be employee, member, or items
         """
         pass
 
