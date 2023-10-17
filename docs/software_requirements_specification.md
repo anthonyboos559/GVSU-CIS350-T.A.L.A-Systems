@@ -18,7 +18,7 @@ attributes should behave.
 ### Database Reqs
  1. FRD1: Database shall construct SQL queries.
  2. FRD2: Database shall not directly use GUI arguments to execute SQL commands
- 3. FRD3: Database shall create 3 tables and initialize them with the correct data upon    	instantiation of a Database object.
+ 3. FRD3: Database shall create 3 tables and initialize them with the correct data upon instantiation of a Database object.
  4. FRD4: User shall be able to add items to inventory table.
  5. FRD5: User shall be able to add people to employee table.
  6. FRD6: User shall be able to add people to customer table.
@@ -32,7 +32,7 @@ attributes should behave.
  3. NFRG3: The user shall only access the database through the provided GUI.
  4. NFRG4: The GUI text shall be clearly readable.
  5. NFRG5: The GUI shall be intuitive to use.
- 6. NFRG6: The GUI shall not have unreasonable delays.
+ 6. NFRG6: The GUI shall not have delays longer than 5 seconds.
  7. NFRG7: The user shall be aware of what the program does.
  8. NFRG8: The GUI shall be compatible with Windows, MacOS, and Linux.
 ### Database Reqs
