@@ -5,7 +5,8 @@ class Database:
         self.query = None
         employee_database_tables = None
         inventory_database_tables = None
-        # This is a test
+        # This is a test to add DB Branch
+        # this is another test to see if I'm pulling stuff correctly
 
 
     def edit_row(self, items: list):
