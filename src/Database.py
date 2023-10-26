@@ -20,11 +20,16 @@ class Database:
     def pass_data_to_gui(self, table: str):
         """Pass informaiton on the specified database to the gui."""
 
-    def view_data(self, table: str):
+    def view_data(self, table: str) -> list[tuple[str]]:
         """Returns the contents of this table in the database.
 
         Params:
-            table: A string representing the table we want to view the contents of."""
+            table: A string representing the table we want to view the contents of.
+
+        Returns:
+            Returns either the contents of the specified table and a success message, or a boolean of False
+            and a failure message for the GUI to use to tell the user a satus update.
+        """
         if table.isidentifier() and (table == 'Inventory' or table == 'Employee' or table == 'Member'):
             rows = self.cursor.execute(f"SELECT * FROM {table};")
             self.connection.commit()
@@ -70,14 +75,11 @@ class Database:
         with open('inventoryOriginalData', 'r') as inv_file:
             all_data = inv_file.readlines()
             for line in all_data:
-                print(line.split())
                 line_split = line.split()
                 self.add_row("Inventory", line_split)
 
-
-
-
     def edit_row(self, items: list):
+
         pass
 
     def add_row(self, table: str, items_to_add: list[str]):
@@ -118,8 +120,26 @@ class Database:
             self.connection.commit()
         # "INSERT INTO Member VALUES(member_id, name, email, phone_num, points);"
 
-    def delete_row(self, items: list):
-        pass
+    def delete_row(self, items: list[str]):
+        """Deletes the row with the specified id passed in.
+
+        Params:
+            id: A string representing the id number for the row we want to delete
+        """
+        table = items[0]
+        row_id = items[2]
+        if table.isidentifier() and table == 'Inventory':
+            statement_to_execute = "DELETE FROM Inventory WHERE item_id=?;"
+            self.cursor.execute(statement_to_execute, (row_id,))
+            self.connection.commit()
+        elif table.isidentifier() and table == 'Employee':
+            statement_to_execute = 'DELETE FROM Employee WHERE emp_id=?'
+            self.cursor.execute(statement_to_execute, (row_id,))
+            self.connection.commit()
+        elif table.isidentifier() and table == "Member":
+            statement_to_execute = "DELETE FROM Member WHERE member_id=?;"
+            self.cursor.execute(statement_to_execute, (row_id,))
+            self.connection.commit()
 
     # receive inputs from GUI and store the passed information in the instance variables and format the correct
     # SQL command
@@ -174,4 +194,6 @@ class Database:
 s = Database()
 s.view_data('Inventory')
 s.view_data('Employee')
+s.view_data('Member')
+s.delete_row(['Member', 'delete', '10'])
 s.view_data('Member')
