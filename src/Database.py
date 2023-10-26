@@ -17,12 +17,15 @@ class Database:
         # This is a test to add DB Branch
         # this is another test to see if I'm pulling stuff correctly
 
+    def pass_data_to_gui(self, table: str):
+        """Pass informaiton on the specified database to the gui."""
+
     def view_data(self, table: str):
         """Returns the contents of this table in the database.
 
         Params:
             table: A string representing the table we want to view the contents of."""
-        if table.isidentifier():
+        if table.isidentifier() and (table == 'Inventory' or table == 'Employee' or table == 'Member'):
             rows = self.cursor.execute(f"SELECT * FROM {table};")
             self.connection.commit()
             contents = rows.fetchall()
@@ -35,13 +38,36 @@ class Database:
     def load_tables_original_data(self):
         """Method to load the original data tables of each table"""
         self.load_inventory_table()
-        # self.load_employee_table()
-        # self.load_member_table()
+        self.load_employee_table()
+        self.load_member_table()
+
+    def load_member_table(self):
+        """Loads member data with data from files."""
+        with open('memberOriginalData', 'r') as mem_file:
+            all_data = mem_file.readlines()
+            for line in all_data:
+                data_split = line.split()
+                self.add_row("Member", data_split)
+
+
+
+    def load_employee_table(self):
+        """Loads employee data with data from starting files."""
+#         create_employee_table = "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30),
+#                                       Position VARCHAR(20), Email VARCHAR(35), Phone_num INT,
+#                                       Salary NUMERIC(6, 2));"
+        with open('employeeOriginalData', 'r') as empFile:
+            empFileLines = empFile.readlines()
+            for line in empFileLines:
+                emp_split = line.split()
+                self.add_row('Employee', emp_split)
+
+
 
     def load_inventory_table(self):
         """The method that will load the inventory table with the correct original data based upon the file data.
         """
-        with open('inventoryOriginalData', 'r+') as inv_file:
+        with open('inventoryOriginalData', 'r') as inv_file:
             all_data = inv_file.readlines()
             for line in all_data:
                 print(line.split())
@@ -68,7 +94,28 @@ class Database:
             self.cursor.execute('INSERT INTO Inventory (item_id, Product_name, Count, Price) VALUES (?, ?, ?, ?)',
                (id, name, count, price))
             self.connection.commit()
-        # "INSERT INTO Employee VALUES(emp_id, name, position, email, phone_num, salary);"
+        elif table.isidentifier() and table == 'Employee':
+            id = items_to_add[0]
+            name = items_to_add[1]
+            position = items_to_add[2]
+            email = items_to_add[3]
+            phone_num = items_to_add[4]
+            salary = items_to_add[5]
+            insertion_stat = 'INSERT INTO Employee (emp_id, Name, Position, Email, Phone_num, Salary) VALUES (?, ?, ?, ?, ?, ?)'
+            items_to_be_inserted = (id, name, position, email, phone_num, salary)
+            self.cursor.execute(insertion_stat, items_to_be_inserted)
+            self.connection.commit()
+        # "INSERT INTO Employee VALUES(emp_id, Name, Position, Email, Phone_num, Salary);"
+        elif table.isidentifier() and table == 'Member':
+            id = items_to_add[0]
+            name = items_to_add[1]
+            email = items_to_add[2]
+            phone_num = items_to_add[3]
+            points = items_to_add[4]
+            insertion_stat = 'INSERT INTO Member (member_id, Name, Email, Phone_num, Points) VALUES (?, ?, ?, ?, ?)'
+            items_to_insert = id, name, email, phone_num, points
+            self.cursor.execute(insertion_stat, items_to_insert)
+            self.connection.commit()
         # "INSERT INTO Member VALUES(member_id, name, email, phone_num, points);"
 
     def delete_row(self, items: list):
@@ -102,7 +149,7 @@ class Database:
         # db and tables exist, if not, read from that file with default values. If it does exist, then use the values
         # from the previous db creation/usage.
         create_inventory_table = "CREATE TABLE Inventory(item_id INT PRIMARY KEY, Product_name VARCHAR(30), Count INT, Price NUMERIC(5, 2));"
-        create_employee_table = "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30), Position VARCHAR(5), Email VARCHAR(40), Phone_num INT, Salary NUMERIC(6, 2));"
+        create_employee_table = "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30), Position VARCHAR(20), Email VARCHAR(35), Phone_num INT, Salary NUMERIC(6, 2));"
         create_member_table = "CREATE TABLE Member(member_id INT PRIMARY KEY, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
         self.cursor.execute(create_inventory_table)
         self.cursor.execute(create_employee_table)
@@ -125,5 +172,6 @@ class Database:
 
 # allowing me to test behaviors
 s = Database()
-s.view_data('Member')
+s.view_data('Inventory')
 s.view_data('Employee')
+s.view_data('Member')
