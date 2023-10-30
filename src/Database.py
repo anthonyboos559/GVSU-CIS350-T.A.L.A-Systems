@@ -78,9 +78,14 @@ class Database:
                 line_split = line.split()
                 self.add_row("Inventory", line_split)
 
-    def edit_row(self, items: list):
+    def edit_row(self, items: list[str]):
+        """edit a specific item in a specific row
 
-        pass
+        Params:
+            items: a list of strings. First element is table, second element is action (edit), third element
+            is what column we are editing, fourth element is what we are changing it to."""
+
+
 
     def add_row(self, table: str, items_to_add: list[str]):
         """Allows us to add a row/insert a new item and it's corresponding fields.
@@ -160,7 +165,11 @@ class Database:
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
-    def execute_command(self):
+    def execute_command(self, list[str]):
+    """executes the command our user wants (edit row, add row, delete row) based on what's in the list at
+    index 1. Index 0 is the table we want to mess with, index 1 is the command we want to execute.
+    index 3, 4, ... are the required parameters for that command."""
+
         pass
 
     def create_tables(self):
