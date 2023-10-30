@@ -84,6 +84,7 @@ class Database:
         Params:
             items: a list of strings. First element is table, second element is action (edit), third element
             is what column we are editing, fourth element is what we are changing it to."""
+        pass
 
 
 
@@ -165,8 +166,8 @@ class Database:
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
-    def execute_command(self, list[str]):
-    """executes the command our user wants (edit row, add row, delete row) based on what's in the list at
+    def execute_command(self, items: list[str]):
+        """executes the command our user wants (edit row, add row, delete row) based on what's in the list at
     index 1. Index 0 is the table we want to mess with, index 1 is the command we want to execute.
     index 3, 4, ... are the required parameters for that command."""
 
