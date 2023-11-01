@@ -4,9 +4,8 @@ class Database:
         """Alec tested code: From here"""
         self.connection = sqlite3.connect("T.A.L.A. System Database")
         self.cursor = self.connection.cursor()
-        # Once we have all the behaviors working. Our __innit__ method should have an if statement that will check if
-        # the db and tables exist, if not, read from that file with default values. If it does exist, then use the
-        # values from the previous db creation/usage.
+        # if the database file (since sqlite3 is through a db file) does not currently exist, create one based off
+        # the default data from our files
         if not self.tables_exist():
             self.create_tables()
             self.load_tables_original_data()
@@ -24,7 +23,6 @@ class Database:
             self.cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'")
             result = self.cursor.fetchone()
             self.connection.commit()
-            print(result)
             if not result:
                 return False
         return True
@@ -48,7 +46,6 @@ class Database:
             rows = self.cursor.execute(f"SELECT * FROM {table};")
             self.connection.commit()
             contents = rows.fetchall()
-            print(contents)
             return contents, f"Successfully returned contents of table: {table}"
         else:
             return False, f"That was not a valid table name"
@@ -98,11 +95,18 @@ class Database:
                 self.add_row(items)
 
     def edit_row(self, items: list[str]):
-        """edit a specific item in a specific row
+        """edit a specific item in a specific row specified by the third index of the list
 
         Params:
             items: a list of strings. First element is table, second element is action (edit), third element
             is what column we are editing, fourth element is what we are changing it to."""
+
+        # will need to get the data from the specified row id
+        # Can the user edit multiple fields at a time?
+        # How is the data that the user wants to edit being passed to the GUI?
+        # If they only want to edit 1 thing from that row. is the list still going to be the same size with empty
+        # strings? Or will it just be the list with that 2 elements (1 being the row id, and the second being what
+        # they want to edit
         pass
 
     def add_row(self, items_to_add: list[str]):
@@ -184,21 +188,31 @@ class Database:
                    "view": self.view_data}
         commands[action](args)
 
+    def format_sql_command(self, query: str, user_input: tuple[str] = None):
+        """Recieves a query and executes it.
 
-
-        pass
-
-    def format_sql_command(self, query: str):
-        pass
+        Params:
+            query: A string that is the query we want to execute.
+            user_input: The input for the parametized query"""
+        self.cursor.execute(query, user_input)
+        self.connection.commit()
+        """This doesn't work for the get_all_ids function (since it shouldn't be receiving a tuple parameter."""
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
-    def execute_command(self, items: list[str]):
+    def execute_sql_command(self, query: str, user_input: tuple[str] = None):
         """executes the command our user wants (edit row, add row, delete row) based on what's in the list at
     index 1. Index 0 is the table we want to mess with, index 1 is the command we want to execute.
     index 3, 4, ... are the required parameters for that command."""
-
-        pass
+        print(query, query[0:6])
+        if query[0:6] == "SELECT":
+            rows = self.cursor.execute(query)
+            self.connection.commit()
+        else:
+            rows = self.cursor.execute(query, user_input)
+            self.connection.commit()
+        contents = rows.fetchall()
+        return contents
 
     def create_tables(self):
         """Create the original tables."""
@@ -213,27 +227,19 @@ class Database:
         self.cursor.execute(create_member_table)
         self.connection.commit()
 
-
-
-    def create_original_tables(self):
-        """Create the original employee and items table which will be used in the innit method.
-         """
-        pass
-    # should we store the original data in a file, or within the code?
-
-    def ensure_changes_are_safe(self):
-        """Ensures that the SQL command to be executed is safe and doesn't contain things like dropping tables"""
-        invalid_values = ["'", '"', ';', 'employee_database_tables', 'inventory_database_tables']
-        pass
-
     def get_primary_key_row_data(self, table: str):
         """returns the data for the specified data row."""
+
 
     def get_all_ids(self, table: str):
         """Returns the ids of all elements of the specified table
 
         Params:
             table: (str): A string that represents the table we want to view all the ids for."""
+        """Below is the general sql to get all the primary keys from the inventory table"""
+        primary_keys_names = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
+        query = f"SELECT {primary_keys_names[table]} FROM {table};"
+        return self.execute_sql_command(query)
 
 
 """pass to database be modified to fit dicitonary structure talked about today
@@ -248,3 +254,9 @@ s.view_data(['Member'])
 s.delete_row(['Member', 'delete', '10'])
 s.view_data(['Member'])
 
+"""Below is the general sql to get all the primary keys from the inventory table"""
+rows = s.cursor.execute("SELECT item_id FROM Inventory;")
+s.connection.commit()
+primary_keys = rows.fetchall()
+
+print(s.get_all_ids("Inventory"))
