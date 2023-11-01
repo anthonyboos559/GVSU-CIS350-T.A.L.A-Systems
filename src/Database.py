@@ -241,7 +241,7 @@ class Database:
         query = f"SELECT {primary_keys_names[table]} FROM {table};"
         return self.execute_sql_command(query)
 
-
+"""We'll need to make a method that given an id and table, returns the data for that row."""
 """pass to database be modified to fit dicitonary structure talked about today
         
 get all ids methods that the gui can use to get all the ids of a specified table. """
