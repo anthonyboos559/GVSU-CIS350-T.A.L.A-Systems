@@ -149,8 +149,9 @@ class Database:
 
     # receive inputs from GUI and store the passed information in the instance variables and format the correct
     # SQL command
-    def pass_to_database(self, action: list[str]):
+    def pass_to_database(self, action: dict[str: str, str: list[str]]):
         """Receive command and table the command coresponds to from the GUI and execute that command."""
+
         commands = {"delete": self.delete_row,
                    "edit": self.edit_row,
                    "add": self.add_row}
@@ -199,6 +200,19 @@ class Database:
         invalid_values = ["'", '"', ';', 'employee_database_tables', 'inventory_database_tables']
         pass
 
+    def get_primary_key_row_data(self, table:):
+        """returns the data for the specified data row."""
+
+    def get_all_ids(self, table: str):
+        """Returns the ids of all elements of the specified table
+
+        Params:
+            table: (str): A string that represents the table we want to view all the ids for."""
+
+
+"""pass to database be modified to fit dicitonary structure talked about today
+        
+get all ids methods that the gui can use to get all the ids of a specified table. """
 
 # allowing me to test behaviors
 s = Database()
