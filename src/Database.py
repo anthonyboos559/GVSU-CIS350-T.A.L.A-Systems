@@ -33,8 +33,7 @@ class Database:
             table: A string representing the table we want to view the contents of.
 
         Returns:
-            Returns either the contents of the specified table and a success message, or a boolean of False
-            and a failure message for the GUI to use to tell the user a satus update.
+            Returns the contents of the specified table.
         """
         table = data[0]
         if table.isidentifier() and (table == 'Inventory' or table == 'Employee' or table == 'Member'):
