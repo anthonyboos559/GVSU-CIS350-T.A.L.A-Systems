@@ -28,6 +28,19 @@ class GUI:
         self.action_frame.grid(row=0, column=1, sticky="N")
 
         self.data_frame = tk.Frame(master= self.main)
+        self.data_frame.grid(row=1, column=0)
+        text_box=tk.Text(self.data_frame,width=50, height=5)
+        text_box.grid(row=0, column=0)
+        scroll_y=tk.Scrollbar(self.data_frame)
+        scroll_y.grid(row=0, column=1, sticky='NS')
+        scroll_y.config(command=text_box.yview)
+        text_box.config(yscrollcommand=scroll_y.set)
+
+        scroll_x=tk.Scrollbar(self.data_frame, orient=tk.HORIZONTAL)
+        scroll_x.grid(row=1, column=0, sticky='EW')
+        scroll_x.config(command=text_box.xview)
+        text_box.config(xscrollcommand=scroll_x.set)
+
         self.main.mainloop()
 
     def display_table(self):
