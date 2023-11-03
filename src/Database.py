@@ -1,7 +1,6 @@
 import sqlite3
 class Database:
     def __init__(self):
-        """Alec tested code: From here"""
         self.connection = sqlite3.connect("T.A.L.A. System Database")
         self.cursor = self.connection.cursor()
         # if the database file (since sqlite3 is through a db file) does not currently exist, create one based off
@@ -9,8 +8,8 @@ class Database:
         if not self.tables_exist():
             self.create_tables()
             self.load_tables_original_data()
-        """To here: end Alec tested code"""
 
+        """Need to implement id_num as instance variable for each table."""
         self.query = None
         employee_database_tables = None
         inventory_database_tables = None
@@ -26,10 +25,6 @@ class Database:
             if not result:
                 return False
         return True
-
-
-    def pass_data_to_gui(self, table: str):
-        """Pass informaiton on the specified database to the gui."""
 
     def view_data(self, data: list[str]) -> list[tuple[str]]:
         """Returns the contents of this table in the database.
@@ -70,9 +65,6 @@ class Database:
 
     def load_employee_table(self):
         """Loads employee data with data from starting files."""
-#         create_employee_table = "CREATE TABLE Employee(emp_id INT PRIMARY KEY, Name VARCHAR(30),
-#                                       Position VARCHAR(20), Email VARCHAR(35), Phone_num INT,
-#                                       Salary NUMERIC(6, 2));"
         with open('employeeOriginalData', 'r') as empFile:
             empFileLines = empFile.readlines()
             for line in empFileLines:
@@ -94,20 +86,42 @@ class Database:
                 items += line_split
                 self.add_row(items)
 
-    def edit_row(self, items: list[str]):
+    def edit_row(self, data: list[str]):
         """edit a specific item in a specific row specified by the third index of the list
 
         Params:
-            items: a list of strings. First element is table, second element is action (edit), third element
+            data: a list of strings. First element is table, second element is action (edit), third element
             is what column we are editing, fourth element is what we are changing it to."""
 
-        # will need to get the data from the specified row id
-        # Can the user edit multiple fields at a time?
-        # How is the data that the user wants to edit being passed to the GUI?
-        # If they only want to edit 1 thing from that row. is the list still going to be the same size with empty
-        # strings? Or will it just be the list with that 2 elements (1 being the row id, and the second being what
-        # they want to edit
-        pass
+        table = data[0]
+        if table == "Inventory":
+            id = data[2]
+            name = data[3]
+            count = data[4]
+            price = data[5]
+            query = "UPDATE Inventory SET item_id=?, Product_name=?, Count=?, Price=? WHERE item_id=?;"
+            query_data = (id, name, count, price, id)
+            self.execute_sql_command(query, query_data)
+        elif table == "Employee":
+            id = data[2]
+            name = data[3]
+            position = data[4]
+            email = data[5]
+            phone_num = data[6]
+            salary = data[7]
+            query = "UPDATE Employee SET emp_id=?, Name=?, Position=?, Email=?, Phone_num=?, Salary=? WHERE emp_id=?;"
+            query_data = (id, name, position, email, phone_num, salary, id)
+            self.execute_sql_command(query, query_data)
+        elif table == "Member":
+            "CREATE TABLE Member(member_id INT PRIMARY KEY, Name VARCHAR(30), Email VARCHAR(40), Phone_num VARCHAR(22), Points INT);"
+            id = data[2]
+            name = data[3]
+            email = data[4]
+            phone_num = data[5]
+            points = data[6]
+            query = "UPDATE Member SET member_id=?, Name=?, Email=?, Phone_num=?, Points=? WHERE member_id=?"
+            query_data = (id, name, email, phone_num, points, id)
+            self.execute_sql_command(query, query_data)
 
     def add_row(self, items_to_add: list[str]):
         """Allows us to add a row/insert a new item and it's corresponding fields.
@@ -178,15 +192,17 @@ class Database:
         action = data_unparsed["action"]
         args = data_unparsed["args"]
         data_list = []
-        data_list.append(table), data_unparsed.append(action)
+        data_list.append(table), data_list.append(action)
         for item in args:
             data_list.append(item)
 
         commands = {"delete": self.delete_row,
                    "edit": self.edit_row,
                    "add": self.add_row,
-                   "view": self.view_data}
-        commands[action](args)
+                   "view": self.view_data,
+                   "get data": self.get_data_based_off_primary_key,
+                    "primary keys": self.get_all_ids}
+        commands[action](data_list)
 
     def format_sql_command(self, query: str, user_input: tuple[str] = None):
         """Recieves a query and executes it.
@@ -200,12 +216,13 @@ class Database:
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
-    def execute_sql_command(self, query: str, user_input: tuple[str] = None):
+    def execute_sql_command(self, query: str, user_input: tuple[str | int] = None):
         """executes the command our user wants (edit row, add row, delete row) based on what's in the list at
     index 1. Index 0 is the table we want to mess with, index 1 is the command we want to execute.
     index 3, 4, ... are the required parameters for that command."""
-        print(query, query[0:6])
-        if query[0:6] == "SELECT":
+        # If user_input is empty: this is not a paremtized query so it has different structure for SQL Command
+        # So if it is a parametized query, we will pass the tuple, if it's not, then we only pass the query.
+        if not user_input:
             rows = self.cursor.execute(query)
             self.connection.commit()
         else:
@@ -227,8 +244,17 @@ class Database:
         self.cursor.execute(create_member_table)
         self.connection.commit()
 
-    def get_primary_key_row_data(self, table: str):
-        """returns the data for the specified data row."""
+    def get_data_based_off_primary_key(self, table: str, id_num: int):
+        """Returns the data for the specified data row. The specified data row is by the row id (the primary key)
+
+        Params:
+            table: A string representing the name of the table we want to view the data for
+            id_num (int | str): An integer or string representing the id number for the row the user to interact with.
+        """
+        id_name: dict[str[str]] = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
+        # Return the data for the specified row.
+        return self.execute_sql_command(f"SELECT * from {table} WHERE {id_name[table]}=?", (id_num,))
+
 
 
     def get_all_ids(self, table: str):
@@ -241,22 +267,21 @@ class Database:
         query = f"SELECT {primary_keys_names[table]} FROM {table};"
         return self.execute_sql_command(query)
 
-"""We'll need to make a method that given an id and table, returns the data for that row."""
-"""pass to database be modified to fit dicitonary structure talked about today
-        
-get all ids methods that the gui can use to get all the ids of a specified table. """
+if __name__ == "__main__":
+    # allowing me to test behaviors
+    s = Database()
+    s.view_data(['Inventory'])
+    s.view_data(['Employee'])
+    s.view_data(['Member'])
+    s.delete_row(['Member', 'delete', '10'])
+    s.view_data(['Member'])
 
-# allowing me to test behaviors
-s = Database()
-s.view_data(['Inventory'])
-s.view_data(['Employee'])
-s.view_data(['Member'])
-s.delete_row(['Member', 'delete', '10'])
-s.view_data(['Member'])
+    """Below is the general sql to get all the primary keys from the inventory table"""
+    rows = s.cursor.execute("SELECT item_id FROM Inventory;")
+    s.connection.commit()
+    primary_keys = rows.fetchall()
 
-"""Below is the general sql to get all the primary keys from the inventory table"""
-rows = s.cursor.execute("SELECT item_id FROM Inventory;")
-s.connection.commit()
-primary_keys = rows.fetchall()
-
-print(s.get_all_ids("Inventory"))
+    print(s.get_data_based_off_primary_key("Member", 11))
+    print(s.get_all_ids("Employee"))
+    s.pass_to_database({"table": "Employee", "action": "edit", "args": []})
+    s.pass_to_database({"table": "Employee", "action": "view", "args": []})
