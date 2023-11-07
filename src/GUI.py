@@ -7,42 +7,44 @@ class GUI:
         self.main = tk.Tk()
         self.main.title("T.A.L.A Data Management")
         self.main.geometry("300x300")
+
         self.tables = {"Inventory":0, "Employee":1, "Member":2}
         self.table = tk.IntVar(self.main, 0)
-        self.buttons = {"Add":"+", "Delete":"-", "Alter":"a", "New":"n"}
-        self.selected_buttons = tk.StringVar(value=["Add", "Delete", "Alter", "New"])
-        table_frame = tk.Frame(master=self.main, width=100)
-        tk.Label(master= table_frame, text="Select table:").pack()
+        self.table_frame = tk.LabelFrame(master=self.main, text= "Table:")
+        i = 0
         for text, value in self.tables.items():
-            tk.Radiobutton(master= table_frame, text= text, variable= self.table, value= value).pack(side=tk.TOP, ipady=5)
-        table_frame.place(x=0, y=0)
-        button_frame = tk.Frame(master=self.main)
-        tk.Listbox(master= button_frame, listvariable=self.selected_buttons, height=6).pack()
-        button_frame.place(x=100,y=0)
-        txt = tk.Text(master= self.main, height = 8, width= 35)
-        txt.place(x=10, y=125)
-        txt.insert(tk.END, "ITEM | QUANTITY | PRICE\nApple | 245 | $2.67\nOrange | 34 | $1\nPizza | 1,000,000 | $0\nPierogi | 57 | $3.25")
+            tk.Radiobutton(master= self.table_frame, text= text, variable= self.table, value= value).grid(row=i, column=0, sticky="W")
+            i+=1
+        tk.Button(master= self.table_frame, text="Get data", command=self.display_table).grid(row=i, column=0)
+        self.table_frame.grid(row=0, column=0, sticky="NW")
+        
+        self.actions = {"Add":0, "Delete":1, "Edit":2, "View":3}
+        self.action = tk.IntVar(self.main, 0)
+        self.action_frame = tk.LabelFrame(master= self.main, text="Action:")
+        i = 0
+        for text, value in self.actions.items():
+            tk.Radiobutton(master= self.action_frame, text= text, variable= self.action, value= value).grid(row=i, column=0, sticky="W")
+            i+=1
+        self.action_frame.grid(row=0, column=1, sticky="N")
+
+        self.data_frame = tk.Frame(master= self.main)
+        self.data_frame.grid(row=1, column=0)
+        text_box=tk.Text(self.data_frame,width=50, height=5)
+        text_box.grid(row=0, column=0)
+        scroll_y=tk.Scrollbar(self.data_frame)
+        scroll_y.grid(row=0, column=1, sticky='NS')
+        scroll_y.config(command=text_box.yview)
+        text_box.config(yscrollcommand=scroll_y.set)
+
+        scroll_x=tk.Scrollbar(self.data_frame, orient=tk.HORIZONTAL)
+        scroll_x.grid(row=1, column=0, sticky='EW')
+        scroll_x.config(command=text_box.xview)
+        text_box.config(xscrollcommand=scroll_x.set)
+
         self.main.mainloop()
 
-    def clear_gui(self) -> None:
+    def display_table(self):
         pass
-
-    def pass_to_database(self) -> None:
-        #Send components of the SQL query the Databse object
-        pass
-
-    def display_buttons(self) -> None:
-        pass
-
-    def get_results(self):
-        pass
-
-    def print_table(self):
-        pass
-
-    def get_input(self):
-        pass
-
 
 test = GUI()
 
