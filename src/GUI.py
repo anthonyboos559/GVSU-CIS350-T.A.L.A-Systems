@@ -6,7 +6,7 @@ class GUI:
     def __init__(self):
         self.main = tk.Tk()
         self.main.title("T.A.L.A Data Management")
-        self.main.geometry("300x300")
+        #self.main.geometry("300x300")
 
         self.tables = {"Inventory":0, "Employee":1, "Member":2}
         self.table = tk.IntVar(self.main, 0)
@@ -27,17 +27,23 @@ class GUI:
             i+=1
         self.action_frame.grid(row=0, column=1, sticky="N")
 
+        self.field_frame = tk.LabelFrame(master= self.main, text="Fields:")
+
+        self.fields = self.init_fields()
+        self.field_frame.grid(row= 0, column= 2)
+
+
         self.data_frame = tk.Frame(master= self.main)
-        self.data_frame.grid(row=1, column=0)
+        self.data_frame.grid(row=1, column=0, columnspan=3)
         text_box=tk.Text(self.data_frame,width=50, height=5)
-        text_box.grid(row=0, column=0)
+        text_box.grid(row=0, column=0, columnspan=3)
         scroll_y=tk.Scrollbar(self.data_frame)
-        scroll_y.grid(row=0, column=1, sticky='NS')
+        scroll_y.grid(row=0, column=3, sticky='NS')
         scroll_y.config(command=text_box.yview)
         text_box.config(yscrollcommand=scroll_y.set)
 
         scroll_x=tk.Scrollbar(self.data_frame, orient=tk.HORIZONTAL)
-        scroll_x.grid(row=1, column=0, sticky='EW')
+        scroll_x.grid(row=1, column=0, sticky='EW', columnspan=3)
         scroll_x.config(command=text_box.xview)
         text_box.config(xscrollcommand=scroll_x.set)
 
@@ -45,6 +51,27 @@ class GUI:
 
     def display_table(self):
         pass
+
+    def init_fields(self):
+        fields = []
+        ID_frame = tk.LabelFrame(master= self.field_frame, text= "ID:")
+        ID = tk.StringVar(master= ID_frame, value="0")
+        tk.OptionMenu(master= ID_frame, variable=ID, value="0").grid(row= 0, column= 0)
+        ID_frame.grid(row=0, column=0)
+        fields.append(ID_frame)
+        name_frame = tk.LabelFrame(master= self.field_frame, text="Name:")
+        tk.Entry(master=name_frame).grid(row= 0, column= 0)
+        name_frame.grid(row=1, column=0)
+        fields.append(name_frame)
+        count_frame = tk.LabelFrame(master= self.field_frame, text="Count:")
+        tk.Entry(master= count_frame).grid(row= 0, column= 0)
+        count_frame.grid(row= 2, column= 0)
+        fields.append(count_frame)
+        price_frame = tk.LabelFrame(master= self.field_frame, text="Price:")
+        tk.Entry(master= price_frame).grid(row= 0, column= 0)
+        price_frame.grid(row= 3, column= 0)
+        fields.append(price_frame)
+        return fields
 
 test = GUI()
 
