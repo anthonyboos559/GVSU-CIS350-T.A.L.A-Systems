@@ -246,7 +246,7 @@ class Database:
 
 
 
-    def _get_all_ids(self, table: str):
+    def get_all_ids(self, table: str):
         """Returns the ids of all elements of the specified table
 
         Params:
@@ -266,7 +266,7 @@ if __name__ == "__main__":
     s._view_data(['Member'])
 
     print(s._get_data_based_off_primary_key("Member", 11))
-    print(s._get_all_ids("Employee"))
+    print(s.get_all_ids("Employee"))
 
     # testing that the edit works for the Employee table (works for this test)
     x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
