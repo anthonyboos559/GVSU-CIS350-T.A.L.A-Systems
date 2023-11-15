@@ -1,5 +1,9 @@
 import sqlite3
 class Database:
+    _inv_id_num = 0
+    _emp_id_num = 0
+    _member_id_num = 0
+
     def __init__(self):
         self._connection = sqlite3.connect("T.A.L.A. System Database")
         self._cursor = self._connection.cursor()
@@ -9,10 +13,6 @@ class Database:
             self._create_tables()
             self._load_tables_original_data()
 
-        """Implemented id as an instance variable, need to test it to make sure it actually works though."""
-        self._inv_id_num = 200
-        self._emp_id_num = 0
-        self._member_id_num = 0
         # This is a test to add DB Branch
         # this is another test to see if I'm pulling stuff correctly
 
@@ -259,6 +259,13 @@ class Database:
         query = f"SELECT {primary_keys_names[table]} FROM {table};"
         return self._execute_sql_command(query)
 
+    def assign_id(self, table: str):
+        """Gets the next valid ID value for the specified table.
+
+        Params:
+            table (str): A string is the table we want to get an ID value for."""
+
+
 if __name__ == "__main__":
     # allowing me to test behaviors
     s = Database()
@@ -280,5 +287,7 @@ if __name__ == "__main__":
 
     print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+    print(s._member_id_num)
 
 
