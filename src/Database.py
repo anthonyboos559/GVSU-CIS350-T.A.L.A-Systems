@@ -10,7 +10,7 @@ class Database:
             self._load_tables_original_data()
 
         """Implemented id as an instance variable, need to test it to make sure it actually works though."""
-        self._inv_id_num = 0
+        self._inv_id_num = 200
         self._emp_id_num = 0
         self._member_id_num = 0
         # This is a test to add DB Branch
@@ -130,7 +130,8 @@ class Database:
         if table.isidentifier() and table == 'Inventory':
             # set id to inv_num_id value + 1. This is initially 0, so if a completely new database is being created.
             # The smalled value possible is 1.
-            id += self._inv_id_num
+            self._inv_id_num += 1
+            id = self._inv_id_num
             name = items_to_add[3]
             count = items_to_add[4]
             price = items_to_add[5]
@@ -138,7 +139,8 @@ class Database:
                (id, name, count, price))
             self._connection.commit()
         elif table.isidentifier() and table == 'Employee':
-            id += self._emp_id_num
+            self._emp_id_num += 1
+            id = self._emp_id_num
             name = items_to_add[3]
             position = items_to_add[4]
             email = items_to_add[5]
@@ -150,7 +152,8 @@ class Database:
             self._connection.commit()
         # "INSERT INTO Employee VALUES(emp_id, Name, Position, Email, Phone_num, Salary);"
         elif table.isidentifier() and table == 'Member':
-            id += self._member_id_num
+            self._member_id_num += 1
+            id = self._member_id_num
             name = items_to_add[3]
             email = items_to_add[4]
             phone_num = items_to_add[5]
@@ -200,7 +203,7 @@ class Database:
                    "add": self._add_row,
                    "view": self._view_data,
                    "get data": self._get_data_based_off_primary_key,
-                    "primary keys": self._get_all_ids}
+                    "primary keys": self.get_all_ids}
         return commands[action](data_list)
 
     # use command line format to execute the different sql commands.
@@ -246,7 +249,7 @@ class Database:
 
 
 
-    def _get_all_ids(self, table: str):
+    def get_all_ids(self, table: str):
         """Returns the ids of all elements of the specified table
 
         Params:
@@ -259,14 +262,6 @@ class Database:
 if __name__ == "__main__":
     # allowing me to test behaviors
     s = Database()
-    s._view_data(['Inventory'])
-    s._view_data(['Employee'])
-    s._view_data(['Member'])
-    s._delete_row(['Member', 'delete', '10'])
-    s._view_data(['Member'])
-
-    print(s._get_data_based_off_primary_key("Member", 11))
-    print(s._get_all_ids("Employee"))
 
     # testing that the edit works for the Employee table (works for this test)
     x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
@@ -278,6 +273,12 @@ if __name__ == "__main__":
     # testing that edit works for Inventory. (Works in this test)
     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["13", "DROP TABLE Inventorysfdfdsfmnds fnmds fnm dnmsfnmdfnnf,n,dnf,nds;", "20", "26.99"]})))
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+    print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
 
 
