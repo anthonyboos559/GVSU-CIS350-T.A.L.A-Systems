@@ -1,9 +1,10 @@
 import tkinter as tk
 import sys
-
+import Database
 class GUI:
     """Displays the GUI that will utilize the backend Logic"""
     def __init__(self):
+        self.db = Database.Database()
         self.main = tk.Tk()
         self.main.title("T.A.L.A Data Management")
         #self.main.geometry("300x300")
@@ -35,22 +36,42 @@ class GUI:
 
         self.data_frame = tk.Frame(master= self.main)
         self.data_frame.grid(row=1, column=0, columnspan=3)
-        text_box=tk.Text(self.data_frame,width=50, height=5)
-        text_box.grid(row=0, column=0, columnspan=3)
+        self.text_box=tk.Text(self.data_frame,width=50, height=5)
+        self.text_box.grid(row=0, column=0, columnspan=3)
         scroll_y=tk.Scrollbar(self.data_frame)
         scroll_y.grid(row=0, column=3, sticky='NS')
-        scroll_y.config(command=text_box.yview)
-        text_box.config(yscrollcommand=scroll_y.set)
+        scroll_y.config(command=self.text_box.yview)
+        self.text_box.config(yscrollcommand=scroll_y.set)
 
         scroll_x=tk.Scrollbar(self.data_frame, orient=tk.HORIZONTAL)
         scroll_x.grid(row=1, column=0, sticky='EW', columnspan=3)
-        scroll_x.config(command=text_box.xview)
-        text_box.config(xscrollcommand=scroll_x.set)
+        scroll_x.config(command=self.text_box.xview)
+        self.text_box.config(xscrollcommand=scroll_x.set)
 
         self.main.mainloop()
 
     def display_table(self):
-        pass
+        selected_value = self.table.get()
+
+        if selected_value == 0:
+            data = self.db._view_data(['Inventory'])
+            displayed_text = ''
+            for row in data:
+                displayed_text += ', '.join(map(str, row)) + '\n'
+            self.text_box.insert(tk.END, displayed_text)
+        elif selected_value == 1:
+            data = self.db._view_data(['Employee'])
+            displayed_text = ''
+            for row in data:
+                displayed_text += ', '.join(map(str, row)) + '\n'
+            self.text_box.insert(tk.END, displayed_text)
+        elif selected_value == 2:
+            data = self.db._view_data(['Member'])
+            displayed_text = ''
+            for row in data:
+                displayed_text += ', '.join(map(str, row)) + '\n'
+            self.text_box.insert(tk.END, displayed_text)
+
 
     def init_fields(self):
         fields = []
