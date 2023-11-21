@@ -3,16 +3,15 @@ class Database:
     def __init__(self):
         self._connection = sqlite3.connect("T.A.L.A. System Database")
         self._cursor = self._connection.cursor()
+        self._emp_id = 1
+        self._mem_id = 1
+        self._inv_id = 1
         # if the database file (since sqlite3 is through a db file) does not currently exist, create one based off
         # the default data from our files
         if not self._tables_exist():
             self._create_tables()
             self._load_tables_original_data()
 
-        """Implemented id as an instance variable, need to test it to make sure it actually works though."""
-        self._inv_id_num = 0
-        self._emp_id_num = 0
-        self._member_id_num = 0
         # This is a test to add DB Branch
         # this is another test to see if I'm pulling stuff correctly
 
@@ -130,7 +129,7 @@ class Database:
         if table.isidentifier() and table == 'Inventory':
             # set id to inv_num_id value + 1. This is initially 0, so if a completely new database is being created.
             # The smalled value possible is 1.
-            id += self._inv_id_num
+            id = self._assign_id(table)
             name = items_to_add[3]
             count = items_to_add[4]
             price = items_to_add[5]
@@ -138,7 +137,7 @@ class Database:
                (id, name, count, price))
             self._connection.commit()
         elif table.isidentifier() and table == 'Employee':
-            id += self._emp_id_num
+            id = self._assign_id(table)
             name = items_to_add[3]
             position = items_to_add[4]
             email = items_to_add[5]
@@ -150,7 +149,7 @@ class Database:
             self._connection.commit()
         # "INSERT INTO Employee VALUES(emp_id, Name, Position, Email, Phone_num, Salary);"
         elif table.isidentifier() and table == 'Member':
-            id += self._member_id_num
+            id = self._assign_id(table)
             name = items_to_add[3]
             email = items_to_add[4]
             phone_num = items_to_add[5]
@@ -200,7 +199,7 @@ class Database:
                    "add": self._add_row,
                    "view": self._view_data,
                    "get data": self._get_data_based_off_primary_key,
-                    "primary keys": self._get_all_ids}
+                    "primary keys": self.get_all_ids}
         return commands[action](data_list)
 
     # use command line format to execute the different sql commands.
@@ -251,20 +250,25 @@ class Database:
 
         Params:
             table: (str): A string that represents the table we want to view all the ids for."""
-        """Below is the general sql to get all the primary keys from the inventory table"""
-        primary_keys_names = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
-        query = f"SELECT {primary_keys_names[table]} FROM {table};"
-        return self._execute_sql_command(query)
+        if type(table) == type(list):
+            # if the pass to database method was used to view all the primary keys, then a list where the first element
+            # is the table we want to mess with will be passed as the argument. So code nested in this if statement
+            # will handle that scenario
+            table = table[0]
+            primary_keys_names = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
+            query = f"SELECT {primary_keys_names[table]} FROM {table};"
+            return self._execute_sql_command(query)
+        else:
+            # if the method was called directly then a string representing the table should be passed and we can just
+            # directly place that table name in our string.
+            primary_keys_names = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
+            query = f"SELECT {primary_keys_names[table]} FROM {table};"
+            return self._execute_sql_command(query)
 
-if __name__ == "__main__":
-    # allowing me to test behaviors
-    s = Database()
-    s._view_data(['Inventory'])
-    s._view_data(['Employee'])
-    s._view_data(['Member'])
-    s._delete_row(['Member', 'delete', '10'])
-    s._view_data(['Member'])
+    def _assign_id(self, table: str):
+        """Gets the next valid ID value for the specified table.
 
+<<<<<<< HEAD
     print(s._get_data_based_off_primary_key("Member", 11))
     print(s.get_all_ids("Employee"))
 
@@ -279,5 +283,40 @@ if __name__ == "__main__":
     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+=======
+        Params:
+            table (str): A string is the table we want to get an ID value for."""
+        all_ids = self.get_all_ids(table)
+        ids = {"Employee": self._emp_id, "Inventory": self._inv_id, "Member": self._mem_id}
+        specified_id = ids[table]
+        while specified_id in [this_id[0] for this_id in all_ids]:
+            specified_id += 1
+        return specified_id
+>>>>>>> dbBranch
 
 
+
+# if __name__ == "__main__":
+#     # allowing me to test behaviors
+#     s = Database()
+#
+#     # testing that the edit works for the Employee table (works for this test)
+#     x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
+#     print(x)
+#     s.pass_to_database({"table": "Employee", "action": "edit", "args": ["18", "APPLE JACK", "ceo", "joemama@gmail.com", "6161616762737", "2000000"]})
+#     y = s.pass_to_database({"table": "Employee", "action": "view", "args": ["s", "sds", "sdds"]})
+#     print(y)
+#
+#     # testing that edit works for Inventory. (Works in this test)
+#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+#     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
+#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+#
+#     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["13", "DROP TABLE Inventorysfdfdsfmnds fnmds fnm dnmsfnmdfnnf,n,dnf,nds;", "20", "26.99"]})))
+#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+#
+#     print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
+#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+#
+#
+#
