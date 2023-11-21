@@ -268,22 +268,6 @@ class Database:
     def _assign_id(self, table: str):
         """Gets the next valid ID value for the specified table.
 
-<<<<<<< HEAD
-    print(s._get_data_based_off_primary_key("Member", 11))
-    print(s.get_all_ids("Employee"))
-
-    # testing that the edit works for the Employee table (works for this test)
-    x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
-    print(x)
-    s.pass_to_database({"table": "Employee", "action": "edit", "args": ["18", "APPLE JACK", "ceo", "joemama@gmail.com", "6161616762737", "2000000"]})
-    y = s.pass_to_database({"table": "Employee", "action": "view", "args": ["s", "sds", "sdds"]})
-    print(y)
-
-    # testing that edit works for Inventory. (Works in this test)
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-=======
         Params:
             table (str): A string is the table we want to get an ID value for."""
         all_ids = self.get_all_ids(table)
@@ -292,7 +276,6 @@ class Database:
         while specified_id in [this_id[0] for this_id in all_ids]:
             specified_id += 1
         return specified_id
->>>>>>> dbBranch
 
 
 
