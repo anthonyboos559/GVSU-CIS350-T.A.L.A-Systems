@@ -9,21 +9,21 @@ class GUI:
         self.main.title("T.A.L.A Data Management")
         #self.main.geometry("300x300")
 
-        self.tables = {"Inventory":0, "Employee":1, "Member":2}
+        self.tables = {0:"Inventory", 1:"Employee", 2:"Member"}
         self.table = tk.IntVar(self.main, 0)
         self.table_frame = tk.LabelFrame(master=self.main, text= "Table:")
         i = 0
-        for text, value in self.tables.items():
+        for value, text in self.tables.items():
             tk.Radiobutton(master= self.table_frame, text= text, variable= self.table, value= value, command= self.configure_fields).grid(row=i, column=0, sticky="W")
             i+=1
         tk.Button(master= self.table_frame, text="Get data", command=self.display_table).grid(row=i, column=0)
         self.table_frame.grid(row=0, column=0, sticky="NW")
         
-        self.actions = {"Add":0, "Delete":1, "Edit":2, "View":3}
+        self.actions = {0:"Add", 1:"Delete", 2:"Edit", 3:"View"}
         self.action = tk.IntVar(self.main, 0)
         self.action_frame = tk.LabelFrame(master= self.main, text="Action:")
         i = 0
-        for text, value in self.actions.items():
+        for value, text in self.actions.items():
             tk.Radiobutton(master= self.action_frame, text= text, variable= self.action, value= value, command= self.configure_fields).grid(row=i, column=0, sticky="W")
             i+=1
         self.action_frame.grid(row=0, column=1, sticky="N")
