@@ -1,7 +1,7 @@
 import sqlite3
 class Database:
     def __init__(self):
-        self._connection = sqlite3.connect("T.A.L.A. System Database")
+        self._connection = sqlite3.connect("../data/T.A.L.A. System Database")
         self._cursor = self._connection.cursor()
         self._emp_id = 1
         self._mem_id = 1
@@ -50,7 +50,7 @@ class Database:
 
     def _load_member_table(self):
         """Loads member data with data from files."""
-        with open('memberOriginalData', 'r') as mem_file:
+        with open('../data/memberOriginalData', 'r') as mem_file:
             all_data = mem_file.readlines()
             for line in all_data:
                 items = []
@@ -61,7 +61,7 @@ class Database:
 
     def _load_employee_table(self):
         """Loads employee data with data from starting files."""
-        with open('employeeOriginalData', 'r') as empFile:
+        with open('../data/employeeOriginalData', 'r') as empFile:
             empFileLines = empFile.readlines()
             for line in empFileLines:
                 items = []
@@ -73,7 +73,7 @@ class Database:
     def _load_inventory_table(self):
         """The method that will load the inventory table with the correct original data based upon the file data.
         """
-        with open('inventoryOriginalData', 'r') as inv_file:
+        with open('../data/inventoryOriginalData', 'r') as inv_file:
             all_data = inv_file.readlines()
             for line in all_data:
                 items = []
@@ -279,27 +279,27 @@ class Database:
 
 
 
-# if __name__ == "__main__":
-#     # allowing me to test behaviors
-#     s = Database()
-#
-#     # testing that the edit works for the Employee table (works for this test)
-#     x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
-#     print(x)
-#     s.pass_to_database({"table": "Employee", "action": "edit", "args": ["18", "APPLE JACK", "ceo", "joemama@gmail.com", "6161616762737", "2000000"]})
-#     y = s.pass_to_database({"table": "Employee", "action": "view", "args": ["s", "sds", "sdds"]})
-#     print(y)
-#
-#     # testing that edit works for Inventory. (Works in this test)
-#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-#     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
-#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-#
-#     print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["13", "DROP TABLE Inventorysfdfdsfmnds fnmds fnm dnmsfnmdfnnf,n,dnf,nds;", "20", "26.99"]})))
-#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-#
-#     print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
-#     print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-#
-#
-#
+if __name__ == "__main__":
+    # allowing me to test behaviors
+    s = Database()
+
+    # testing that the edit works for the Employee table (works for this test)
+    x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
+    print(x)
+    s.pass_to_database({"table": "Employee", "action": "edit", "args": ["18", "APPLE JACK", "ceo", "joemama@gmail.com", "6161616762737", "2000000"]})
+    y = s.pass_to_database({"table": "Employee", "action": "view", "args": ["s", "sds", "sdds"]})
+    print(y)
+
+    # testing that edit works for Inventory. (Works in this test)
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["13", "DROP TABLE Inventorysfdfdsfmnds fnmds fnm dnmsfnmdfnnf,n,dnf,nds;", "20", "26.99"]})))
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+    print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
+    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+
+
+
