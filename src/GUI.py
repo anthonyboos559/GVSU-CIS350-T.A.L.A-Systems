@@ -4,7 +4,7 @@ import Database as db
 class GUI:
     """Displays the GUI that will utilize the backend Logic"""
     def __init__(self):
-        #self.db = db.Database()
+        self.db = db.Database()
         self.main = tk.Tk()
         self.main.title("T.A.L.A Data Management")
         #self.main.geometry("300x300")
@@ -54,8 +54,9 @@ class GUI:
         self.main.mainloop()
 
     def display_table(self):
+        self.text_box.config(state=tk.NORMAL)
         selected_value = self.table.get()
-
+        self.text_box.delete('1.0', 'end')
         if selected_value == 0:
             data = self.db._view_data(['Inventory'])
             displayed_text = ''
@@ -74,6 +75,7 @@ class GUI:
             for row in data:
                 displayed_text += ', '.join(map(str, row)) + '\n'
             self.text_box.insert(tk.END, displayed_text)
+        self.text_box.config(state=tk.DISABLED)
 
 
     def init_fields(self):
