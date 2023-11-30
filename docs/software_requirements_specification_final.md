@@ -4,30 +4,53 @@ functional and non-functional behavior about our software. A requirement is
 a capability (functionality) or a condition (constraint) to which our 
 software must conform to. Requirements are specifications of what should 
 be 
-implemented. They are descriptions of how the system (the database and the GUI) and its 
+implemented. They are descriptions of how the system (the Database, the 
+Database.py and the GUI) and its 
 attributes should behave.
 
 
-# Functional Requirements
-### GUI Reqs
- 1. FRG1: The GUI shall allow the user to submit a request to the database.
- 2. FRG2: The GUI shall allow the user to view the results of their requests.
- 3. FRG3: The GUI shall display a staus message based on the result of the request.
- 4. FRG4: The GUI shall allow the user to save their changes.
- 
-### Database Reqs
+## Functional Requirements
+
 ### GUI's interactions with the database
 | ID  | pass_to_Database    |
 | :-------------: | :---------- |
 | FR1 | Execute: The pass_to_database function shall execute different actions 
 depending on the argument passed to the function.
-| FR2 | Delete data: the database shall delete whatever data is passed as an 
+| FR2 | Delete data: the database.py shall delete whatever data is passed as 
+an 
 argument to the pass_to_database function. |
 | FR3 | Add data: The pass_to_database function shall add the data passed as 
 an 
 argument to the pass_to_database function. |
-| FR4 | 
+| FR4 | Edit Data: The database sall edit the data for a specified id number 
+that's passed as an argument in the pass_to_database function. |
+| FR5 | Format Data: The database will format the data passed as an argument 
+to the pass_to_database_function so that it's in the correct format for the 
+methods the database.py uses. |
 
+## Non-Functional Requirements
+
+### Database.py Functionality
+| ID  | Required Functinoality that must be implemented  |
+| :-------------: | :---------- |
+| NFR1 | The database.py code will protect against SQL injections |
+| NFR2 | The database shall not allow for duplicate id numbers within 
+individual tables |
+| NFR3 | For any action executed (add/delete/edit data), only the specified 
+data shall be changed/added/removed. No other data rows in any of the other 
+tables shall be affected. |
+| NFR4 | The database shall save any changes made to it.
+| NFR5 | Database will be saved as an actual local file on users laptop 
+
+# Functional Requirements
+### GUI Reqs
+ 1. FRG1: The GUI shall allow the user to submit a request to the database.
+ 2. FRG2: The GUI shall allow the user to view the results of their requests.
+ 3. FRG3: The GUI shall display a staus message based on the result of the 
+request.
+ 4. FRG4: The GUI shall allow the user to save their changes.
+
+## Database Reqs
  1. FRD1: Database shall construct SQL queries.
  2. FRD2: Database shall not directly use GUI arguments to execute SQL commands
  3. FRD3: Database shall create 3 tables and initialize them with the correct data upon instantiation of a Database object.
