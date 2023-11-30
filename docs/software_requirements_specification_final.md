@@ -4,7 +4,7 @@ functional and non-functional behavior about our software. A requirement is
 a capability (functionality) or a condition (constraint) to which our 
 software must conform to. Requirements are specifications of what should 
 be 
-implemented. They are descriptions of how the system and its 
+implemented. They are descriptions of how the system (the database and the GUI) and its 
 attributes should behave.
 
 
@@ -16,6 +16,18 @@ attributes should behave.
  4. FRG4: The GUI shall allow the user to save their changes.
  
 ### Database Reqs
+### GUI's interactions with the database
+| ID  | pass_to_Database    |
+| :-------------: | :---------- |
+| FR1 | Execute: The pass_to_database function shall execute different actions 
+depending on the argument passed to the function.
+| FR2 | Delete data: the database shall delete whatever data is passed as an 
+argument to the pass_to_database function. |
+| FR3 | Add data: The pass_to_database function shall add the data passed as 
+an 
+argument to the pass_to_database function. |
+| FR4 | 
+
  1. FRD1: Database shall construct SQL queries.
  2. FRD2: Database shall not directly use GUI arguments to execute SQL commands
  3. FRD3: Database shall create 3 tables and initialize them with the correct data upon instantiation of a Database object.
@@ -24,6 +36,7 @@ attributes should behave.
  6. FRD6: User shall be able to add people to customer table.
  7. FRD7: The database shall read its data from a file.
  8. FRD8: The database shall write its data to a file.
+ 9. FRD
  
 # Non-Functional Requirements
 ### GUI Reqs
