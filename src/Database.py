@@ -1,12 +1,13 @@
 import sqlite3
 import os
+
 class Database:
     def __init__(self):
         self._emp_id = 1
         self._mem_id = 1
         self._inv_id = 1
         self.slash = os.sep
-        self._connection = sqlite3.connect(f"..{self.slash}data{self.slash}T.A.L.A. System Database")
+        self._connection = sqlite3.connect(f".{self.slash}data{self.slash}T.A.L.A. System Database")
         self._cursor = self._connection.cursor()
         # if the database file (since sqlite3 is through a db file) does not currently exist, create one based off
         # the default data from our files
@@ -52,7 +53,7 @@ class Database:
 
     def _load_member_table(self):
         """Loads member data with data from files."""
-        with open(f'..{self.slash}data{self.slash}memberOriginalData', 'r') as mem_file:
+        with open(f'.{self.slash}data{self.slash}memberOriginalData', 'r') as mem_file:
             all_data = mem_file.readlines()
             for line in all_data:
                 items = []
@@ -63,7 +64,7 @@ class Database:
 
     def _load_employee_table(self):
         """Loads employee data with data from starting files."""
-        with open(f'..{self.slash}data{self.slash}employeeOriginalData', 'r') as empFile:
+        with open(f'.{self.slash}data{self.slash}employeeOriginalData', 'r') as empFile:
             empFileLines = empFile.readlines()
             for line in empFileLines:
                 items = []
@@ -75,7 +76,7 @@ class Database:
     def _load_inventory_table(self):
         """The method that will load the inventory table with the correct original data based upon the file data.
         """
-        with open(f'..{self.slash}data{self.slash}inventoryOriginalData', 'r') as inv_file:
+        with open(f'.{self.slash}data{self.slash}inventoryOriginalData', 'r') as inv_file:
             all_data = inv_file.readlines()
             for line in all_data:
                 items = []
