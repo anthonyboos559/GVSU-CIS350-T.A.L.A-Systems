@@ -206,7 +206,8 @@ class Database:
                    "View": self._view_data,
                    "get data": self._get_data_based_off_primary_key,
                     "primary keys": self.get_all_ids}
-        return commands[action](data_list)
+        commands[action](data_list)
+        return commands["View"](data_list)
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
