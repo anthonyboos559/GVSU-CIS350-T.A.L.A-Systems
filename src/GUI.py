@@ -121,6 +121,8 @@ class GUI:
                                                       "Action": self._actions[self._action_var.get()],
                                                       "Args": [self._ID_var.get()] + \
                                                         [self._variables[var_id].get() for var_id in self._configs["Table"][self._table_var.get()]]}))
+        self._update_ids()
+        self._set_data(self._ID_var.get())
 
     def display_table(self, data):
         self._text_box.config(state=tk.NORMAL)
@@ -151,6 +153,7 @@ class GUI:
             menu.delete(0, tk.END)
             for id in new_ids:
                 menu.add_command(label=id, command=lambda val=id[0]: self._set_data(val))
+            self._ID_var.set(new_ids[0][0])
 
     def _get_config(self):
         if self._action_var.get() == 3:
