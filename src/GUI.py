@@ -39,17 +39,18 @@ class GUI:
         self._field_frame = tk.LabelFrame(master= self._main, text="Fields:")
         self._field_frame.grid(row= 0, column= 2)
         self._fields = []
+        tk.Button(master = self._field_frame, text= "Submit\nRequest", command= self._submit_query).grid(row= 0, column= 0, sticky = "W")
         ID_frame = tk.LabelFrame(master= self._field_frame, text= "ID:")
         self._ID_var = tk.StringVar(master= ID_frame, value="1")
         self._ID_menu = tk.OptionMenu(master= ID_frame, variable=self._ID_var, value="1")
         self._ID_menu.grid(row= 0, column= 0)
-        ID_frame.grid(row=0, column=0)
+        ID_frame.grid(row=0, column=0, sticky= "E")
         self._fields.append(ID_frame)
 
         static_id_frame = tk.LabelFrame(master= self._field_frame, text= "ID:")
         self._static_ID = tk.Label(master = static_id_frame, text= "1")
         self._static_ID.grid(row= 0, column= 0)
-        static_id_frame.grid(row=0, column=0)
+        static_id_frame.grid(row=0, column=0, sticky = "E")
         self._fields.append(static_id_frame)
 
         name_frame = tk.LabelFrame(master= self._field_frame, text="Name:")
@@ -102,42 +103,33 @@ class GUI:
 
     def _init_data_box(self):
         self._data_frame = tk.Frame(master= self._main)
-        self._data_frame.grid(row=1, column=0, columnspan=3)
-        self.text_box=tk.Text(self._data_frame,width=50, height=5)
-        self.text_box.grid(row=0, column=0, columnspan=3)
-        scroll_y=tk.Scrollbar(self._data_frame)
-        scroll_y.grid(row=0, column=3, sticky='NS')
-        scroll_y.config(command=self.text_box.yview)
-        self.text_box.config(yscrollcommand=scroll_y.set)
+        self._data_frame.grid(row=1, column=0, columnspan= 3, sticky="NSEW")
+        self._text_box = tk.Text(self._data_frame, height= 6, state= tk.DISABLED)
+        self._text_box.grid(row= 0, column= 0, columnspan= 3, rowspan= 2, sticky="NSEW")
+        scroll_y = tk.Scrollbar(self._data_frame)
+        scroll_y.grid(row= 0, column= 3, rowspan= 2, sticky= 'NSE')
+        scroll_y.config(command=self._text_box.yview)
+        self._text_box.config(yscrollcommand=scroll_y.set)
 
         scroll_x=tk.Scrollbar(self._data_frame, orient=tk.HORIZONTAL)
-        scroll_x.grid(row=1, column=0, sticky='EW', columnspan=3)
-        scroll_x.config(command=self.text_box.xview)
-        self.text_box.config(xscrollcommand=scroll_x.set)
+        scroll_x.grid(row= 2, column= 0, sticky= 'EWN', columnspan= 3)
+        scroll_x.config(command= self._text_box.xview)
+        self._text_box.config(xscrollcommand=scroll_x.set)
 
-    def display_table(self):
-        self.text_box.config(state=tk.NORMAL)
-        selected_value = self._table_var.get()
-        self.text_box.delete('1.0', 'end')
-        if selected_value == 0:
-            data = self._db._view_data(['Inventory'])
-            displayed_text = ''
-            for row in data:
-                displayed_text += ', '.join(map(str, row)) + '\n'
-            self.text_box.insert(tk.END, displayed_text)
-        elif selected_value == 1:
-            data = self._db._view_data(['Employee'])
-            displayed_text = ''
-            for row in data:
-                displayed_text += ', '.join(map(str, row)) + '\n'
-            self.text_box.insert(tk.END, displayed_text)
-        elif selected_value == 2:
-            data = self._db._view_data(['Member'])
-            displayed_text = ''
-            for row in data:
-                displayed_text += ', '.join(map(str, row)) + '\n'
-            self.text_box.insert(tk.END, displayed_text)
-        self.text_box.config(state=tk.DISABLED)
+    def _submit_query(self):
+        self.display_table(self._db.pass_to_database({"Table": self._tables[self._table_var.get()],
+                                                      "Action": self._actions[self._action_var.get()],
+                                                      "Args": [self._ID_var.get()] + \
+                                                        [self._variables[var_id].get() for var_id in self._configs["Table"][self._table_var.get()]]}))
+
+    def display_table(self, data):
+        self._text_box.config(state=tk.NORMAL)
+        self._text_box.delete('1.0', tk.END)
+        displayed_text = ''
+        for row in data:
+            displayed_text += ', '.join(str(i) for i in row) + '\n'
+        self._text_box.insert(tk.END, displayed_text)
+        self._text_box.config(state=tk.DISABLED)
 
     def _set_data(self, index):
         self._ID_var.set(index)
