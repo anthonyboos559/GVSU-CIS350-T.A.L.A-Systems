@@ -143,10 +143,10 @@ class GUI:
             self._variables[var_id].set(value=data[i+1])
 
     def _update_ids(self):
-        new_ids = self._db.get_all_ids(self._tables[self._table_var.get()])
         if self._action_var.get() == 0:
-            self._static_ID.config(text= str(new_ids[-1][0]+1))
+            self._static_ID.config(text= self._db.assign_id(self._tables[self._table_var.get()]))
         else:
+            new_ids = self._db.get_all_ids(self._tables[self._table_var.get()])
             menu = self._ID_menu['menu']
             menu.delete(0, tk.END)
             for id in new_ids:

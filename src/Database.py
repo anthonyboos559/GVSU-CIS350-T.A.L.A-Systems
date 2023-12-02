@@ -133,7 +133,7 @@ class Database:
         if table.isidentifier() and table == 'Inventory':
             # set id to inv_num_id value + 1. This is initially 0, so if a completely new database is being created.
             # The smalled value possible is 1.
-            id = self._assign_id(table)
+            id = self.assign_id(table)
             name = items_to_add[3]
             count = items_to_add[4]
             price = items_to_add[5]
@@ -141,7 +141,7 @@ class Database:
                (id, name, count, price))
             self._connection.commit()
         elif table.isidentifier() and table == 'Employee':
-            id = self._assign_id(table)
+            id = self.assign_id(table)
             name = items_to_add[3]
             position = items_to_add[4]
             email = items_to_add[5]
@@ -153,7 +153,7 @@ class Database:
             self._connection.commit()
         # "INSERT INTO Employee VALUES(emp_id, Name, Position, Email, Phone_num, Salary);"
         elif table.isidentifier() and table == 'Member':
-            id = self._assign_id(table)
+            id = self.assign_id(table)
             name = items_to_add[3]
             email = items_to_add[4]
             phone_num = items_to_add[5]
@@ -271,7 +271,7 @@ class Database:
             query = f"SELECT {primary_keys_names[table]} FROM {table};"
             return self._execute_sql_command(query)
 
-    def _assign_id(self, table: str):
+    def assign_id(self, table: str):
         """Gets the next valid ID value for the specified table.
 
         Params:
