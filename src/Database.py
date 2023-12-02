@@ -121,6 +121,7 @@ class Database:
             query = "UPDATE Member SET member_id=?, Name=?, Email=?, Phone_num=?, Points=? WHERE member_id=?"
             query_data = (id, name, email, phone_num, points, id)
             self._execute_sql_command(query, query_data)
+        return self._view_data([table])
 
     def _add_row(self, items_to_add: list[str]):
         """Allows us to add a row/insert a new item and it's corresponding fields.
@@ -162,6 +163,7 @@ class Database:
             self._cursor.execute(insertion_stat, items_to_insert)
             self._connection.commit()
         # "INSERT INTO Member VALUES(member_id, name, email, phone_num, points);"
+        return self._view_data([table])
 
     def _delete_row(self, items: list[str]):
         """Deletes the row with the specified id passed in.
@@ -183,28 +185,28 @@ class Database:
             statement_to_execute = "DELETE FROM Member WHERE member_id=?;"
             self._cursor.execute(statement_to_execute, (row_id,))
             self._connection.commit()
+        return self._view_data([table])
 
     # receive inputs from GUI and store the passed information in the instance variables and format the correct
     # SQL command
     def pass_to_database(self, data_unparsed:dict[str: str, str: list[str]]):
         """Receive command and table the command corresponds to from the GUI and execute that command."""
 
-        table = data_unparsed["table"]
-        action = data_unparsed["action"]
-        args = data_unparsed["args"]
+        table = data_unparsed["Table"]
+        action = data_unparsed["Action"]
+        args = data_unparsed["Args"]
         data_list = []
         data_list.append(table), data_list.append(action)
         for item in args:
             data_list.append(item)
 
-        commands = {"delete": self._delete_row,
-                   "edit": self._edit_row,
-                   "add": self._add_row,
-                   "view": self._view_data,
+        commands = {"Delete": self._delete_row,
+                   "Edit": self._edit_row,
+                   "Add": self._add_row,
+                   "View": self._view_data,
                    "get data": self._get_data_based_off_primary_key,
                     "primary keys": self.get_all_ids}
-        commands[action](data_list)
-        return self._view_data([table])
+        return commands[action](data_list)
 
     # use command line format to execute the different sql commands.
     # So a dictionary with pointers to the methods will be needed.
