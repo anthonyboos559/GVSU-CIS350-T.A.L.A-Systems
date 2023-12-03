@@ -37,9 +37,10 @@ class Database:
         Returns:
             Returns the contents of the specified table.
         """
+        primary_keys_names = {"Inventory": "item_id", "Employee": "emp_id", "Member": "member_id"}
         table = data[0]
         if table.isidentifier() and (table == 'Inventory' or table == 'Employee' or table == 'Member'):
-            rows = self._cursor.execute(f"SELECT * FROM {table};")
+            rows = self._cursor.execute(f"SELECT * from {table} ORDER BY {primary_keys_names[table]};")
             self._connection.commit()
             contents = rows.fetchall()
             return contents
@@ -291,22 +292,7 @@ if __name__ == "__main__":
     s = Database()
 
     # testing that the edit works for the Employee table (works for this test)
-    x = s.pass_to_database({"table": "Employee", "action": "view", "args":[]})
-    print(x)
-    s.pass_to_database({"table": "Employee", "action": "edit", "args": ["18", "APPLE JACK", "ceo", "joemama@gmail.com", "6161616762737", "2000000"]})
-    y = s.pass_to_database({"table": "Employee", "action": "view", "args": ["s", "sds", "sdds"]})
-    print(y)
-
-    # testing that edit works for Inventory. (Works in this test)
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["11", "DROP BALL", "20", "26.99"]})))
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-
-    print(s.pass_to_database(({"table": "Inventory", "action": "edit", "args": ["13", "DROP TABLE Inventorysfdfdsfmnds fnmds fnm dnmsfnmdfnnf,n,dnf,nds;", "20", "26.99"]})))
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
-
-    print(s.pass_to_database(({"table": "Inventory", "action": "add", "args": ["100", "YOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOMYOURMOM", "20", "26.99"]})))
-    print(s.pass_to_database({"table": "Inventory", "action": "view", "args": []}))
+    print(s._sort_data(["Inventory"]))
 
 
 
