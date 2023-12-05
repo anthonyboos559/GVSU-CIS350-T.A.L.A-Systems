@@ -13,18 +13,18 @@ attributes should behave.
 ## Functional Requirements
 
 ### GUI's interactions with the database
-| ID  | pass_to_Database    |
+| ID  | Requirement    |
 | :-------------: | :---------- |
 | FR1 | Execute: The pass_to_database function shall execute different actions  depending on the argument passed to the function. |
-| FR2 | Delete data: the database.py shall delete whatever data is passed as an argument to the pass_to_database function. |
+| FR2 | Delete data: the database.py shall delete the data at the specified ID passed as an argument to the pass_to_database function. |
 | FR3 | Add data: The pass_to_database function shall add the data passed as an argument to the pass_to_database function. |
 | FR4 | Edit Data: The database sall edit the data for a specified id number that's passed as an argument in the pass_to_database function. |
 | FR5 | Format Data: The database will format the data passed as an argument to the pass_to_database_function so that it's in the correct format for the methods the database.py uses. |
 
 ## Non-Functional Requirements
 
-### Database.py Functionality
-| ID  | Required Functinoality that must be implemented  |
+### Database.py behavior
+| ID  | Requirement |
 | :-------------: | :---------- |
 | NFR1 | The database.py code will protect against SQL injections |
 | NFR2 | The database shall not allow for duplicate id numbers within individual tables |
