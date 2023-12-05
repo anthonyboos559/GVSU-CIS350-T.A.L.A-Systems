@@ -27,13 +27,10 @@ attributes should behave.
 | ID  | Required Functinoality that must be implemented  |
 | :-------------: | :---------- |
 | NFR1 | The database.py code will protect against SQL injections |
-| NFR2 | The database shall not allow for duplicate id numbers within 
-individual tables |
-| NFR3 | For any action executed (add/delete/edit data), only the specified 
-data shall be changed/added/removed. No other data rows in any of the other 
-tables shall be affected. |
-| NFR4 | The database shall save any changes made to it.
-| NFR5 | Database will be saved as an actual local file on users laptop 
+| NFR2 | The database shall not allow for duplicate id numbers within individual tables |
+| NFR3 | For any action executed (add/delete/edit data), only the specified data shall be changed/added/removed. No other data rows in any of the other tables shall be affected. |
+| NFR4 | The database shall save any changes made to it. |
+| NFR5 | Database will be saved as an actual local file on users laptop |
 
 # Functional Requirements
 ### GUI Reqs
