@@ -1,5 +1,7 @@
 import sqlite3
 import os
+# Still need to rewrite the original data .txt files and the code here so that way there's a seperator
+# so we can have names span multiple words rather than being required to be 1 word
 
 class Database:
     def __init__(self):
