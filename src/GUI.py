@@ -6,6 +6,7 @@ class GUI:
     def __init__(self):
         self._db = db.Database()
         self._main = tk.Tk()
+        self._main.resizable(False, False)
         self._main.title("T.A.L.A Data Management")
 
         self._tables = {0:"Inventory", 1:"Employee", 2:"Member"}
