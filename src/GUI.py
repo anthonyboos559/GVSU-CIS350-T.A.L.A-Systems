@@ -103,7 +103,7 @@ class GUI:
         self._fields.append(points_frame)
 
     def _init_data_box(self):
-        self._data_frame = tk.Frame(master= self._main)
+        self._data_frame = tk.LabelFrame(master= self._main, text="Data Display")
         self._data_frame.grid(row=1, column=0, columnspan= 3, sticky="NSEW")
         self._text_box = tk.Text(self._data_frame, height= 6, state= tk.DISABLED)
         self._text_box.grid(row= 0, column= 0, columnspan= 3, rowspan= 2, sticky="NSEW")
