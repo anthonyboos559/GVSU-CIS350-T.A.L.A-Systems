@@ -19,17 +19,17 @@ attributes should behave.
 | FR1 | Execute: The pass_to_database function shall execute different actions  depending on the argument passed to the function. |
 | FR2 | Delete data: the database.py shall delete the data at the specified ID passed as an argument to the pass_to_database function. |
 | FR3 | Add data: The pass_to_database function shall add the data passed as an argument to the pass_to_database function. |
-| FR4 | Edit Data: The database sall edit the data for a specified id number that's passed as an argument in the pass_to_database function. |
-| FR5 | Format Data: The database will format the data passed as an argument to the pass_to_database_function so that it's in the correct format for the methods the database.py uses. |
+| FR4 | Edit Data: The database shall edit the data for a specified id number that's passed as an argument in the pass_to_database function. |
+| FR5 | Format Data: The database will format the data passed as an argument to the pass_to_database_function so that it is in the correct format for the methods the database.py uses. |
 
 ### GUI Data Handling
 | ID  | Requirement    |
 | :-------------: | :----------:|
 | FR6 | GUI shall populate the input fields with relevant data when editing/deleting/adding. |
-| FR7 | When adding data, the GUI shall pull the next ID the added will be assigned.|
-| FR8 | Viewing data shall only display selected table's data.|
-| FR9 | The request shall not be processed until user hits submit request. |
-| FR10 | The input fields shall be cleared when the add action is selected.|
+| FR7 | When adding data, the GUI shall display the ID number that the added data will be assigned.|
+| FR8 | Viewing data shall only display the selected table's data.|
+| FR9 | The request shall not be processed until the user hits 'submit request'. |
+| FR10 | The input fields shall be cleared when the 'add' action is selected.|
 
 ### Database.py Instantiation
 | ID  | Requirement    |
@@ -49,7 +49,7 @@ attributes should behave.
 | NFR2 | The database shall not allow for duplicate id numbers within individual tables. |
 | NFR3 | For any action executed (add/delete/edit data), only the specified data shall be changed/added/removed. No other data rows in any of the other tables shall be affected. |
 | NFR4 | The database shall save any changes made to it. |
-| NFR5 | Database will be saved as an actual local file on users laptop. |
+| NFR5 | Database will be saved as an actual local file on user's computer. |
 
 ### GUI Layout
 | ID  | Requirement |
