@@ -103,6 +103,7 @@ class GUI:
         self._fields.append(points_frame)
 
     def _init_data_box(self):
+        self._columns = {0: "ID, Name, Count, Price\n", 1: "ID, Name, Position, Email, Phone, Salary\n", 2:"ID, Name, Email, Phone, Points\n"}
         self._data_frame = tk.LabelFrame(master= self._main, text="Data Display")
         self._data_frame.grid(row=1, column=0, columnspan= 3, sticky="NSEW")
         self._text_box = tk.Text(self._data_frame, height= 6, state= tk.DISABLED)
@@ -128,7 +129,7 @@ class GUI:
     def display_table(self, data):
         self._text_box.config(state=tk.NORMAL)
         self._text_box.delete('1.0', tk.END)
-        displayed_text = ''
+        displayed_text = self._columns[self._table_var.get()]
         for row in data:
             displayed_text += ', '.join(str(i) for i in row) + '\n'
         self._text_box.insert(tk.END, displayed_text)
