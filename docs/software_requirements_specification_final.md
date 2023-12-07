@@ -24,8 +24,8 @@ Below you will find our functional software requirements first, and then below t
 | :-------------: | :----------:|
 | FR6 | The GUI shall populate the input fields with relevant data when editing/deleting. |
 | FR7 | When adding data, the GUI shall display the ID number that the added data will be assigned. |
-| FR8 | Viewing data shall only display the selected tables data. |
-| FR9 | The request shall not be processed until the user hits the "Submit request button. |
+| FR8 | The view data option shall only display the selected tables data. |
+| FR9 | The request shall not be processed until the user hits the "Submit request button." |
 | FR10 | The input fields shall be cleared when the "Add" action is selected. |
  
 ### Database.py Instantiation
@@ -40,7 +40,7 @@ Below you will find our functional software requirements first, and then below t
 
 ## Non-Functional Requirements
 
-### Database.py behavior
+### Database.py and Database behavior
 
 | ID | Requirement |
 | :-------------: | :----------: |
@@ -48,7 +48,7 @@ Below you will find our functional software requirements first, and then below t
 | NFR2 | The database shall not allow for duplicate ID numbers within individual tables. |
 | NFR3 | For any action executed (add/delete/edit data), only the specified data and table shall be affected. |
 | NFR4 | The database shall save any changes made to it. |
-| NFR5 | The database file shall be saved locally in the ./data directory. |
+| NFR5 | The database file shall be saved locally in the ./data directory (when running the program from main.py). |
 
 ### GUI Layout
 
@@ -72,7 +72,7 @@ Below you will find our functional software requirements first, and then below t
 
 # Software Artifacts
 
-Below are links to all produced artifacts for this project. They are: images of what the GUI looks like on a given OS, images of previous GUI implementations, images of use-case diagrams from the planning phase, or the proposed task checklist/timeline.
+Below are links to all produced artifacts for this project. They are: images of what the GUI looks like on a given OS, images of previous GUI implementations, images of use-case diagrams from the planning phase, and the proposed task checklist/timeline.
 
 [windows.PNG](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/windows.PNG)
 
