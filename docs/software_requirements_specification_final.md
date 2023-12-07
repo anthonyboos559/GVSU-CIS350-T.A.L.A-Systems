@@ -13,10 +13,10 @@ Below you will find our functional software requirements first, and then below t
 | ID | Requirement |
 | :-------------: | :----------:|
 | FR1 | The pass_to_database function shall execute different actions depending on the argument passed to the function. |
-| FR2 | Database.py shall delete the data at the specified ID passed as an argument to the pass_to_database function. |
-| FR3 | Database.py shall add the data passed as an argument to the pass_to_database function. |
-| FR4 | Database.py shall edit the data for the specified ID passed as an argument to the pass_to_database function. |
-| FR5 | Database.py shall format the data passed as arguments to the pass_to_database_function to match it's internal expectations. |
+| FR2 | When deleting, database.py shall delete the data at the specified ID passed as an argument to the pass_to_database function. |
+| FR3 | When adding, database.py shall add the data passed as an argument to the pass_to_database function. |
+| FR4 | When editing, database.py shall edit the data for the specified ID passed as an argument to the pass_to_database function. |
+| FR5 | Database.py shall format the data passed as arguments to the pass_to_database_function to match its internal expectations. |
 
 ### GUI Data Handling
 
