@@ -17,4 +17,12 @@ Having python 3.11 installed. (sqllite3 and tkinter are built-in to Python)
 
 ## Run Instructions
 
-Not yet applicable
+### Unix-Based OS
+1. Clone the repo
+2. Open a terminal in the main repo directory
+3. Run "Python3 main.py"
+
+### Windows
+1. Clone the repo
+2. Open CMD in the main repo directory
+3. Run "Python main.py"
