@@ -9,15 +9,15 @@ Database.py and the GUI) and its
 attributes should behave.
 
 # Artifact Links
-![windows.PNG](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/windows.PNG)
-![MacOS.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/MacOS.png)
-![Linux(GNOME).png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/Linux(GNOME).png)
-![gui_progress.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/gui_progress.png)
-![gui_progress2.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/gui_progress2.png)
-![GUI_DB.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/GUI_DB.jpg)
-![GUI_User_DB.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/GUI_User_DB.jpg)
-![User_GUI.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/User_GUI.jpg)
-![tasks_n_time](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/time_line_stuff/tasks_n_time)
+[windows.PNG](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/windows.PNG)
+[MacOS.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/MacOS.png)
+[Linux(GNOME).png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/Linux(GNOME).png)
+[gui_progress.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/gui_progress.png)
+[gui_progress2.png](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/gui_progress2.png)
+[GUI_DB.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/GUI_DB.jpg)
+[GUI_User_DB.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/GUI_User_DB.jpg)
+[User_GUI.jpg](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/use_case_diagrams/use_case_diagrams/User_GUI.jpg)
+[tasks_n_time](https://github.com/anthonyboos559/GVSU-CIS350-T.A.L.A-Systems/blob/main/artifacts/time_line_stuff/tasks_n_time)
 
 # Software Requirements
 
