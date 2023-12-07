@@ -29,7 +29,6 @@ requirement.
 | ID  | Requirement    |
 | :-------------: | :----------:|
 | FR6 | GUI shall populate the input fields with relevant data when editing/deleting/adding. |
-
 | FR7 | When adding data, the GUI shall display the next ID the added data will be assigned.|
 | FR8 | Viewing data shall only display selected table's data.|
 | FR9 | The request shall not be processed until user hits submit request. |
